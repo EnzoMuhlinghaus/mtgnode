@@ -1,3 +1,4 @@
+- [ ] Mettre à jour données cartes en temps réel
 - [ ] Zone de commandement
 - [ ] Clique droit sur carte pour add counter
 - [ ] Zone de tokens
