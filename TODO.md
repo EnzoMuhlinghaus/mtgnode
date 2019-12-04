@@ -1,5 +1,5 @@
-- [ ] Utiliser Firebase
-- [ ] Bloquer la création d'utilisateur
+- [ ] Utiliser Firebase
+- [ ] Bloquer la création d'utilisateur
 - [ ] Mettre à jour données cartes en temps réel
 - [ ] Zone de commandement
 - [ ] Clique droit sur carte pour add counter
