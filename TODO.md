@@ -1,0 +1,10 @@
+- Zone de commandement
+- Clique droit sur carte pour add counter
+- Zone de tokens
+- Remettre des cartes sur le dessus ou en dessous
+- Mulligan
+- Search graveyard
+- Recherche textuelle dans les tutors
+- Lancer dés
+- prendre controle d'une carte
+- probleme de z-index sur pop up
