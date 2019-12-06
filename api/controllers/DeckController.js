@@ -9,7 +9,11 @@ var card_library = require('../libraries/Card'),
 
 module.exports = {
   parse: function(req, res) {
-    res.json(deck_library.parse(req.param('text'), req.param('format')));
+    deck_library.parse(req.param('text'), req.param('format')).then(function (data) {
+      res.json(data);
+    }).catch(function () {
+      console.error('failed parse');
+    })
   },
   detail: function(req, res) {
 

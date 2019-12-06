@@ -10,7 +10,8 @@
 // Dependencies
 //==============
 const parser = require('mtg-parser'),
-    card_library = require('./Card');
+    _ = require('lodash'),
+    _axios = require('axios');
 
 // Main Class
 //============
@@ -18,18 +19,30 @@ function DeckLibrary() {
 
   // Parse a deck
   this.parse = function(text, format) {
-    let cards = [],
-        deck = parser(text, format);
+      return new Promise(function(resolve, reject) {
+          const deck = parser(text, format);
 
-    deck.cards.map(function(c) {
-      let potential_cards = card_library.searchByName(c.name);
+          const names = deck.cards.map(function(c) {
+              return {
+                  "name": c.name
+              }
+          });
 
-      if (potential_cards.length > 0)
-        for (let i = 0; i < c.number; i++)
-          cards.push(potential_cards[0]);
-    });
+          _axios.post("https://api.scryfall.com/cards/collection", {
+              "identifiers": names
+          })
+              .then(response => {
+                  const cards = response.data.data;
 
-    return cards;
+                  resolve(_.map(cards, function (card) {
+                      card.multiverseid = _.first(card.multiverse_ids);
+                      return card;
+                  }));
+              })
+              .catch(function (error) {
+                  reject(error);
+              });
+      });
   }
 }
 

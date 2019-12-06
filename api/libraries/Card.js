@@ -52,6 +52,7 @@ function CardLibrary() {
 
   // Batch search card by array
   this.getByIdArray = function(card_array) {
+      console.log('searchByArray');
      card_array.map(function(id) {
         _this.get(id).then(function (data) {
             console.log(data)
@@ -66,7 +67,7 @@ function CardLibrary() {
     return new Promise(function(resolve, reject) {
       _axios.get(`https://api.scryfall.com/cards/search?order=cmc&q=${name}`)
         .then(response => {
-          let cards = response.data.data;
+          const cards = response.data.data;
 
           resolve(_.map(cards, function (card) {
              card.multiverseid = _.first(card.multiverse_ids);
