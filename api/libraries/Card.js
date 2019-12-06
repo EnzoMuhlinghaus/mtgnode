@@ -29,7 +29,9 @@ function CardLibrary() {
     return new Promise(function(resolve, reject) {
       _axios.get(`https://api.scryfall.com/cards/multiverse/${id}`)
           .then(response => {
-            resolve(response.data)
+            let card = response.data;
+            card.multiverseid = _.first(card.multiverse_ids);
+            resolve(card)
           })
     });
   };
@@ -50,23 +52,13 @@ function CardLibrary() {
 
   // Batch search card by array
   this.getByIdArray = function(card_array) {
-    console.log('searchByIdArray');
-    console.log(card_array);
-    var index = {};
-
-    return card_array.map(function(id) {
-      if (id in index) {
-        var card = index[id];
-      }
-      else{
-        var card = _.find(_cards, function(c) {
-          return c.multiverseid === id;
+     card_array.map(function(id) {
+        _this.get(id).then(function (data) {
+            console.log(data)
+            return data;
         });
-        index[id] = card;
-      }
-
-      return card;
-    });
+     });
+     console.log(card_array);
   };
 
   // Search by card name
@@ -74,7 +66,12 @@ function CardLibrary() {
     return new Promise(function(resolve, reject) {
       _axios.get(`https://api.scryfall.com/cards/search?order=cmc&q=${name}`)
         .then(response => {
-          resolve(response.data)
+          let cards = response.data.data;
+
+          resolve(_.map(cards, function (card) {
+             card.multiverseid = _.first(card.multiverse_ids);
+             return card;
+          }));
         })
     });
   };

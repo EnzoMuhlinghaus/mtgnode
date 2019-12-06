@@ -21,7 +21,6 @@ module.exports = {
         return false;
       }
 
-      deck.cards = card_library.getByIdArray(deck.cards);
       res.json(deck);
     });
   }

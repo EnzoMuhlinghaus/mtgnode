@@ -51,11 +51,12 @@
 
     // Rendering methods
     this.render = function(card, indexOverride) {
+      console.log('template card', card);
       var index = (indexOverride) ? indexOverride : ++this.index,
           context = {
             id_prefix: this.prefix,
             number: index,
-            multiverseid: card.multiverse_ids[0],
+            multiverseid: card.multiverseid,
             src: _driver(card),
             side: this.prefix,
             name: card.name,

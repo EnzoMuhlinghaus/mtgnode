@@ -22,7 +22,12 @@
     // Formatting card return array
     cardsToMultiverseIdArray: function(cards) {
       return cards.map(function(card){
-        return card.multiverseid;
+        return {
+          'multiverseid': card.multiverseid,
+          'image_uris' : card.image_uris,
+          'name' : card.name,
+          'id' : card.id,
+        }
       });
     },
 
@@ -197,7 +202,6 @@
             return false;
 
           // Calling service
-          console.log(deckId);
           if (!deckId)
             this.request('createDeck', {
               data: {

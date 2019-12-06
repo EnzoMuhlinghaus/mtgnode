@@ -8,12 +8,12 @@ var card_library = require('../libraries/Card');
 
 module.exports = {
   single_card: function(req, res) {
-    var card = card_library.get(req.param('id'));
-
-    if (card)
-      res.json(card);
-    else
+    card_library.get(req.param('id')).then(function (card) {
+      console.log('signlet card', card);
+      res.json(card)
+    }).catch(function () {
       res.notFound();
+    });
   },
   batch_cards: function(req, res) {
     var batch = JSON.parse(req.param('cards'));
@@ -22,7 +22,7 @@ module.exports = {
   },
   search: function(req, res) {
     card_library.searchByName(req.param('query')).then(function (data) {
-      res.json(data.data);
+      res.json(data);
     });
   }
 };

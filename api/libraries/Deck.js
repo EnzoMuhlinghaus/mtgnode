@@ -22,11 +22,6 @@ function DeckLibrary() {
         deck = parser(text, format);
 
     deck.cards.map(function(c) {
-      // let potential_cards;
-
-      // if (c.set !== undefined)
-      //   potential_cards = card_library.searchByNameAndSet(c.name, c.set);
-      // else
       let potential_cards = card_library.searchByName(c.name);
 
       if (potential_cards.length > 0)
