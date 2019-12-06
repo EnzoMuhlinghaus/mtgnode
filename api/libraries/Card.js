@@ -29,9 +29,12 @@ function CardLibrary() {
     return new Promise(function(resolve, reject) {
       _axios.get(`https://api.scryfall.com/cards/multiverse/${id}`)
           .then(response => {
-            let card = response.data;
-            card.multiverseid = _.first(card.multiverse_ids);
-            resolve(card)
+              let card = response.data;
+              if(card.card_faces && card.card_faces.length > 0) {
+                  card.image_uris = _.first(card.card_faces).image_uris
+              }
+              card.multiverseid = _.first(card.multiverse_ids);
+              resolve(card)
           })
     });
   };
@@ -70,6 +73,9 @@ function CardLibrary() {
           const cards = response.data.data;
 
           resolve(_.map(cards, function (card) {
+              if(card.card_faces && card.card_faces.length > 0) {
+                  card.image_uris = _.first(card.card_faces).image_uris
+              }
              card.multiverseid = _.first(card.multiverse_ids);
              return card;
           }));

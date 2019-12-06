@@ -35,6 +35,9 @@ function DeckLibrary() {
                   const cards = response.data.data;
 
                   resolve(_.map(cards, function (card) {
+                      if(card.card_faces && card.card_faces.length > 0) {
+                          card.image_uris = _.first(card.card_faces).image_uris
+                      }
                       card.multiverseid = _.first(card.multiverse_ids);
                       return card;
                   }));

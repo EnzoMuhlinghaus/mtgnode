@@ -11,8 +11,8 @@ module.exports = {
   parse: function(req, res) {
     deck_library.parse(req.param('text'), req.param('format')).then(function (data) {
       res.json(data);
-    }).catch(function () {
-      console.error('failed parse');
+    }).catch(function (error) {
+      console.error(error);
     })
   },
   detail: function(req, res) {

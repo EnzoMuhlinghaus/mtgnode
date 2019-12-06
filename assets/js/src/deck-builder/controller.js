@@ -327,6 +327,7 @@
     this.triggers.events['deckCardsUpdated'] = function(d){
       $panel.empty();
       d.get('deckCards').forEach(function(card, index){
+        console.log(card);
         $panel.append(_template.render(card, index));
       });
     }
