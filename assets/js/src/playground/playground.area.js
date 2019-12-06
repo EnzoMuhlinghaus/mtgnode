@@ -151,7 +151,7 @@
         return;
     }
 
-      var $card = _this.selectCard(e.data.id || e.data.card.id);
+      var $card = _this.selectCard(!!e.data.id ? e.data.id : e.data.card.id);
 
       // Applying new classes to dropped elements
       $card.removeClass('in-' + e.data.from);
