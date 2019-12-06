@@ -55,7 +55,7 @@
           context = {
             id_prefix: this.prefix,
             number: index,
-            multiverseid: card.multiverseid,
+            multiverseid: card.multiverse_ids[0],
             src: _driver(card),
             side: this.prefix,
             name: card.name,

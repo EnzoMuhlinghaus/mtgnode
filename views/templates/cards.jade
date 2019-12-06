@@ -3,7 +3,7 @@ mixin deck_builder_card_template()
   script#tpl_card(type=TEMPLATE_MIME)
     img.card-min-deckbuilder(
       id="{{id_prefix}}_{{number}}",
-      alt="{{multiverseid}} -- {{name}} -- {{set}}",
+      alt="{{name}} -- {{set}}",
       index="{{number}}",
       src="{{src}}",
       multiverseid="{{multiverseid}}"
@@ -23,4 +23,3 @@ mixin dummy_card_template()
   script#tpl_dummy_card(type=TEMPLATE_MIME)
     div(class="card-min card-dummy {{side}}")
       img(index="{{number}}", src="/images/card-back.jpeg", class="front-side {{side}}" style="margin-top: 0px;")
-      

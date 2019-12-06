@@ -18,20 +18,25 @@ function CardLibrary() {
   // Properties
   //------------
   var _this = this,
-      _cards = require('../../database/cards.json');
+      _cards = require('../../database/cards.json'),
+      _axios = require('axios');
 
   // Utilities
   //-----------
 
   // Get card by Id
   this.get = function(id) {
-    return _.find(_cards, function(card) {
-      return card.multiverseid === +id;
+    return new Promise(function(resolve, reject) {
+      _axios.get(`https://api.scryfall.com/cards/multiverse/${id}`)
+          .then(response => {
+            resolve(response.data)
+          })
     });
-  }
+  };
 
   // Search card by criteria
   this.getBy = function(criteria) {
+    console.log('searchBy');
     return _cards.filter(function(card) {
       return Object.keys(criteria).filter(function(key) {
 
@@ -41,10 +46,12 @@ function CardLibrary() {
         return card[key] === criteria[key];
       }).length == Object.keys(criteria).length;
     });
-  }
+  };
 
   // Batch search card by array
   this.getByIdArray = function(card_array) {
+    console.log('searchByIdArray');
+    console.log(card_array);
     var index = {};
 
     return card_array.map(function(id) {
@@ -60,17 +67,22 @@ function CardLibrary() {
 
       return card;
     });
-  }
+  };
 
   // Search by card name
   this.searchByName = function(name) {
-    return _cards.filter(function(c) {
-      return ~c.name.toLowerCase().indexOf(name.toLowerCase());
+    return new Promise(function(resolve, reject) {
+      _axios.get(`https://api.scryfall.com/cards/search?order=cmc&q=${name}`)
+        .then(response => {
+          resolve(response.data)
+        })
     });
-  }
+  };
 
   // Search by card name and set
   this.searchByNameAndSet = function(name, set) {
+    console.log('searchByNameAndSet');
+
     return _cards.filter(function(c) {
       return (c.set === set &&
               ~c.name.toLowerCase().indexOf(name.toLowerCase()));

@@ -9,7 +9,7 @@
 
 // Dependencies
 //==============
-var parser = require('mtg-parser'),
+const parser = require('mtg-parser'),
     card_library = require('./Card');
 
 // Main Class
@@ -18,19 +18,19 @@ function DeckLibrary() {
 
   // Parse a deck
   this.parse = function(text, format) {
-    var cards = [],
+    let cards = [],
         deck = parser(text, format);
 
     deck.cards.map(function(c) {
-      var potential_cards;
+      // let potential_cards;
 
-      if (c.set !== undefined)
-        potential_cards = card_library.searchByNameAndSet(c.name, c.set);
-      else
-        potential_cards = card_library.searchByName(c.name);
+      // if (c.set !== undefined)
+      //   potential_cards = card_library.searchByNameAndSet(c.name, c.set);
+      // else
+      let potential_cards = card_library.searchByName(c.name);
 
       if (potential_cards.length > 0)
-        for (var i = 0; i < c.number; i++)
+        for (let i = 0; i < c.number; i++)
           cards.push(potential_cards[0]);
     });
 
