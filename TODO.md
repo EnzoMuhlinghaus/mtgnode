@@ -1,6 +1,6 @@
 - [ ] Utiliser Firebase
 - [ ] Bloquer la création d'utilisateur
-- [ ] Mettre à jour données cartes en temps réel
+- [X] Utiliser l'API Scryfall/Gatherer
 - [ ] Zone de commandement
 - [ ] Clique droit sur carte pour add counter
 - [ ] Zone de tokens
