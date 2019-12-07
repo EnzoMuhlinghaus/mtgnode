@@ -151,10 +151,6 @@
           return;
       }
 
-      if (!e.data.id && !e.data.card) {
-        return;
-      }
-
       if (e.data.id === 0) {
         var $card = _this.selectCard(e.data.id);
       } else {
