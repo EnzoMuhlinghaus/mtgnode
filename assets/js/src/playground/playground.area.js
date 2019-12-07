@@ -153,9 +153,18 @@
 
       if (!e.data.id && !e.data.card) {
         return;
+<<<<<<< Updated upstream
       }
 
       var $card = _this.selectCard(!!e.data.id ? e.data.id : e.data.card.id);
+=======
+    }
+      if (e.data.id === 0) {
+        var $card = _this.selectCard(e.data.id);
+      } else {
+        var $card = _this.selectCard(!!e.data.id ? e.data.id : e.data.card.id);
+      }
+>>>>>>> Stashed changes
 
       // Applying new classes to dropped elements
       $card.removeClass('in-' + e.data.from);
