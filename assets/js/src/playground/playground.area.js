@@ -148,8 +148,12 @@
     this.triggers.events['card.dropped'] = function(d, e) {
       if (!_this.drop ||
           (_this.name !== e.data.from && _this.name !== e.data.to)) {
+          return;
+      }
+
+      if (!e.data.id && !e.data.card) {
         return;
-    }
+      }
 
       var $card = _this.selectCard(!!e.data.id ? e.data.id : e.data.card.id);
 
